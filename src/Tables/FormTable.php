@@ -1,0 +1,72 @@
+<?php
+
+namespace TomatoPHP\TomatoForms\Tables;
+
+use Illuminate\Http\Request;
+use ProtoneMedia\Splade\AbstractTable;
+use ProtoneMedia\Splade\Facades\Toast;
+use ProtoneMedia\Splade\SpladeTable;
+
+class FormTable extends AbstractTable
+{
+    /**
+     * Create a new instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Determine if the user is authorized to perform bulk actions and exports.
+     *
+     * @return bool
+     */
+    public function authorize(Request $request)
+    {
+        return true;
+    }
+
+    /**
+     * The resource or query builder.
+     *
+     * @return mixed
+     */
+    public function for()
+    {
+        return \TomatoPHP\TomatoForms\Models\Form::query();
+    }
+
+    /**
+     * Configure the given SpladeTable.
+     *
+     * @param \ProtoneMedia\Splade\SpladeTable $table
+     * @return void
+     */
+    public function configure(SpladeTable $table)
+    {
+        $table
+            ->withGlobalSearch(label: trans('tomato-admin::global.search'),columns: ['id','name','key',])
+            ->bulkAction(
+                label: trans('tomato-admin::global.crud.delete'),
+                each: fn (\TomatoPHP\TomatoForms\Models\Form $model) => $model->delete(),
+                after: fn () => Toast::danger(trans('tomato-forms::global.form.messages.deleted'))->autoDismiss(2),
+                confirm: true
+            )
+            ->export()
+            ->defaultSort('id')
+            ->column(key: 'id',label: trans('tomato-forms::global.form.id'), sortable: true)
+            ->column(key: 'type',label: trans('tomato-forms::global.form.type'), sortable: true)
+            ->column(key: 'name',label: trans('tomato-forms::global.form.name'), sortable: true)
+            ->column(key: 'key',label: trans('tomato-forms::global.form.key'), sortable: true)
+            ->column(key: 'endpoint',label: trans('tomato-forms::global.form.endpoint'), sortable: true)
+            ->column(key: 'method',label: trans('tomato-forms::global.form.method'), sortable: true)
+            ->column(key: 'title',label: trans('tomato-forms::global.form.form_title'), sortable: true)
+            ->column(key: 'description',label: trans('tomato-forms::global.form.description'), sortable: true)
+            ->column(key: 'is_active',label: trans('tomato-forms::global.form.is_active'), sortable: true)
+            ->column(key: 'actions',label: trans('tomato-admin::global.crud.actions'))
+            ->paginate(15);
+    }
+}
