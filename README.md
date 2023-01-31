@@ -9,20 +9,6 @@ Build a full Forms with Fields on Database and save it to user meta
 ```bash
 composer require tomatophp/tomato-forms
 ```
-after install please run this command
-
-```bash
-php artisan tomato-forms:install
-```
-
-## Using
-
-you can build an form schema by using this command
-
-```bash
-php artisan tomato-forms:generate
-```
-it will generate a from on database and build a schema to build this form with the same value on any projects
 
 ## Support
 
@@ -42,7 +28,7 @@ Please see [SECURITY](SECURITY.md) for more information about security.
 
 ## Credits
 
-- [Queents](mailto:git@queentechsoltions.net)
+- [Fady Mondy](https://www.github.com/3x1io)
 
 ## License
 
