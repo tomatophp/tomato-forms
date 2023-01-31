@@ -5,7 +5,12 @@
     "keywords": [
         "php",
         "laravel",
-        "template"
+        "forms",
+        "form builder",
+        "database-forms",
+        "form-component",
+        "splade",
+        "tomatophp"
     ],
     "license": "MIT",
     "autoload": {
