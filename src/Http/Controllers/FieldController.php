@@ -60,6 +60,8 @@ class FieldController extends Controller
         $response = Tomato::store(
             request: $request,
             model: \TomatoPHP\TomatoForms\Models\Field::class,
+            hasMedia: $request->hasFile('photo') ? true : false,
+            collection: 'photo',
             message: trans('tomato-forms::global.field.messages.created'),
             redirect: 'admin.fields.index',
         );
@@ -105,6 +107,8 @@ class FieldController extends Controller
         }
         return Tomato::get(
             model: $model,
+            hasMedia: true,
+            collection: 'photo',
             view: 'tomato-forms::fields.edit',
         );
 
@@ -120,6 +124,8 @@ class FieldController extends Controller
         $response = Tomato::update(
             request: $request,
             model: $model,
+            hasMedia: $request->hasFile('photo') ? true : false,
+            collection: 'photo',
             message: trans('tomato-forms::global.field.messages.updated'),
             redirect: 'admin.fields.index',
         );

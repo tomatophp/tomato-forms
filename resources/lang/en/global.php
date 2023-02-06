@@ -34,6 +34,7 @@ return [
         "hint" => "Hint",
         "key" => "Key",
         "default" => "Default",
+        'unit'=> "Unit",
         "has_options" => "Has Options",
         "is_required" => "Is Required",
         "required_message" => "What is the message if Required?",

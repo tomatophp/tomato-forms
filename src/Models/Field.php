@@ -3,6 +3,8 @@
 namespace TomatoPHP\TomatoForms\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
 
 /**
@@ -23,11 +25,12 @@ use Spatie\Translatable\HasTranslations;
  * @property string $updated_at
  * @property FieldOption[] $fieldOptions
  */
-class Field extends Model
+class Field extends Model  implements HasMedia
 {
     use HasTranslations;
+    use InteractsWithMedia;
 
-    public $translatable = ['label', 'placeholder', 'hint', 'required_message'];
+    public $translatable = ['label', 'placeholder', 'hint', 'required_message','unit'];
 
 
     /**
@@ -46,6 +49,7 @@ class Field extends Model
         'has_options',
         'placeholder',
         'hint',
+        'unit',
         'created_at',
         'updated_at'
     ];
