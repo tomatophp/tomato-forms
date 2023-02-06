@@ -34,6 +34,7 @@ return [
         "hint" => "Hint",
         "key" => "Key",
         "default" => "Default",
+        'unit'=> "Unit",
         "has_options" => "Has Options",
         "is_required" => "Is Required",
         "required_message" => "What is the message if Required?",
@@ -68,10 +69,20 @@ return [
         "is_active" => "Active",
         "fields" => "Fields",
         "field" => "Field",
+        "is_primary"=>"Show on first page",
         "messages" => [
             "created" => "Form created successfully",
             "updated" => "Form updated successfully",
             "deleted" => "Form deleted successfully",
         ],
-    ]
+    ],
+    "groups" => [
+        "title" => "Groups",
+        "single" => "group",
+        "back" => "Back",
+        "name" => "Name",
+        "id" => "ID",
+        "key" => "Key",
+
+    ],
 ];

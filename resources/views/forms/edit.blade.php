@@ -48,8 +48,11 @@
 
             <x-splade-checkbox class="col-span-2" name="is_active" label="{{trans('tomato-forms::global.form.is_active')}}" />
         </div>
-        <x-tomato-repeater label="{{trans('tomato-forms::global.form.fields')}}" :options="['field']" name="fields" id="fields" >
+        <x-tomato-repeater label="{{trans('tomato-forms::global.form.fields')}}"  :options="['field','is_primary','group']" name="fields" id="fields" >
             <x-splade-select remote-url="{{route('admin.fields.api')}}" remote-root="model.data" v-model="repeater.main[key].field" option-label="label.{{app()->getLocale()}}" label="{{trans('tomato-forms::global.form.field')}}" option-value="id" />
+            <x-splade-select remote-url="{{route('admin.groups.api')}}" remote-root="model.data" v-model="repeater.main[key].group" option-label="name.{{app()->getLocale()}}" label="{{trans('tomato-forms::global.groups.single')}}" option-value="id" />
+            <x-splade-checkbox class="col-span-2"  v-model="repeater.main[key].is_primary" name="is_primary" label="{{trans('tomato-forms::global.form.is_primary')}}" />
+
         </x-tomato-repeater>
         <x-splade-submit label="{{trans('tomato-admin::global.crud.update')}} {{trans('tomato-forms::global.form.single')}}" :spinner="true" />
         <br>
