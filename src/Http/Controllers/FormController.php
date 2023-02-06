@@ -66,7 +66,7 @@ class FormController extends Controller
             $fieldsArray = [];
             foreach ($request->get('fields') as $key=>$field){
                 if(!array_key_exists($field['field'], $fieldsArray)){
-                    $fieldsArray[$field['field']] = ['order' => $key,'is_primary' => $field['is_primary']];
+                    $fieldsArray[$field['field']] = ['order' => $key,'is_primary' => $field['is_primary'],'group_id'=> $field['group']];
                 }
             }
             $record->fields()->attach($fieldsArray);
@@ -98,7 +98,7 @@ class FormController extends Controller
     public function edit(Form $model): View
     {
         $model->fields = $model->fields()->get()->map(static function($item){
-            return ["field" => $item->id,'is_primary'=>($item->pivot->is_primary == 1) ?true :false];
+            return ["field" => $item->id,'is_primary'=>($item->pivot->is_primary == 1) ?true :false,'group'=> $item->pivot->group_id];
         });
 
         return Tomato::get(
@@ -121,7 +121,7 @@ class FormController extends Controller
             $fieldsArray = [];
             foreach ($request->get('fields') as $key => $field) {
                 if (!array_key_exists($field['field'], $fieldsArray)) {
-                    $fieldsArray[$field['field']] =  ['order' => $key,'is_primary' => $field['is_primary']];
+                    $fieldsArray[$field['field']] = ['order' => $key,'is_primary' => $field['is_primary'],'group_id'=> $field['group']];
                 }
             }
             $model->fields()->sync($fieldsArray);

@@ -7,8 +7,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use TomatoPHP\TomatoForms\Http\Requests\Field\FieldStoreRequest;
-use TomatoPHP\TomatoForms\Http\Requests\Field\FieldUpdateRequest;
+use TomatoPHP\TomatoForms\Http\Requests\Field\GroupStoreRequest;
+use TomatoPHP\TomatoForms\Http\Requests\Field\GroupUpdateRequest;
 use TomatoPHP\TomatoForms\Models\Field;
 use TomatoPHP\TomatoForms\Models\FieldOption;
 use TomatoPHP\TomatoForms\Tables\FieldTable;
@@ -52,10 +52,10 @@ class FieldController extends Controller
     }
 
     /**
-     * @param FieldStoreRequest $request
+     * @param GroupStoreRequest $request
      * @return RedirectResponse
      */
-    public function store(FieldStoreRequest $request): RedirectResponse
+    public function store(GroupStoreRequest $request): RedirectResponse
     {
         $response = Tomato::store(
             request: $request,
@@ -115,11 +115,11 @@ class FieldController extends Controller
     }
 
     /**
-     * @param FieldUpdateRequest $request
+     * @param GroupUpdateRequest $request
      * @param Field $model
      * @return RedirectResponse
      */
-    public function update(FieldUpdateRequest $request, Field $model): RedirectResponse
+    public function update(GroupUpdateRequest $request, Field $model): RedirectResponse
     {
         $response = Tomato::update(
             request: $request,
