@@ -25,6 +25,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fields');
+        Schema::table('fields', function (Blueprint $table) {
+            if (Schema::hasColumn('fields', 'unit')) {
+                $table->dropColumn('unit');
+            }
+        });
     }
 };

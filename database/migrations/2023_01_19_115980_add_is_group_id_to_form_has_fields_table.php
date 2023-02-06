@@ -25,6 +25,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('form_has_fields');
+        Schema::table('form_has_fields', function (Blueprint $table) {
+            if (Schema::hasColumn('form_has_fields', 'group_id')) {
+                $table->dropColumn('group_id');
+            }
+        });
     }
 };
