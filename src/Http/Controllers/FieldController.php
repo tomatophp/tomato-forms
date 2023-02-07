@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use TomatoPHP\TomatoForms\Http\Requests\Field\FieldStoreRequest;
 use TomatoPHP\TomatoForms\Http\Requests\Field\FieldUpdateRequest;
+use TomatoPHP\TomatoForms\Http\Requests\Field\GroupStoreRequest;
+use TomatoPHP\TomatoForms\Http\Requests\Field\GroupUpdateRequest;
 use TomatoPHP\TomatoForms\Models\Field;
 use TomatoPHP\TomatoForms\Models\FieldOption;
 use TomatoPHP\TomatoForms\Tables\FieldTable;
@@ -60,6 +62,8 @@ class FieldController extends Controller
         $response = Tomato::store(
             request: $request,
             model: \TomatoPHP\TomatoForms\Models\Field::class,
+            hasMedia: $request->hasFile('photo') ? true : false,
+            collection: 'photo',
             message: trans('tomato-forms::global.field.messages.created'),
             redirect: 'admin.fields.index',
         );
@@ -105,6 +109,8 @@ class FieldController extends Controller
         }
         return Tomato::get(
             model: $model,
+            hasMedia: true,
+            collection: 'photo',
             view: 'tomato-forms::fields.edit',
         );
 
@@ -120,6 +126,8 @@ class FieldController extends Controller
         $response = Tomato::update(
             request: $request,
             model: $model,
+            hasMedia: $request->hasFile('photo') ? true : false,
+            collection: 'photo',
             message: trans('tomato-forms::global.field.messages.updated'),
             redirect: 'admin.fields.index',
         );

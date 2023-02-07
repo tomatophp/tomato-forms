@@ -52,6 +52,12 @@
 
         <x-splade-input name="key" type="text"  placeholder="{{trans('tomato-forms::global.field.key')}}" />
         <x-splade-input name="default" type="text"  placeholder="{{trans('tomato-forms::global.field.default')}}" />
+
+        <x-splade-input name="unit.ar" type="text"  placeholder="{{trans('tomato-forms::global.field.unit')}} [{{trans('tomato-forms::global.lang.ar')}}]" />
+        <x-splade-input name="unit.en" type="text"  placeholder="{{trans('tomato-forms::global.field.unit')}} [{{trans('tomato-forms::global.lang.en')}}]" />
+
+        <x-splade-file name="photo"  filepond preview />
+
         <x-splade-checkbox name="has_options" label="{{trans('tomato-forms::global.field.has_options')}}" />
 
         <div v-if="form.has_options === true">

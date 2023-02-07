@@ -2,6 +2,7 @@
 
 use TomatoPHP\TomatoForms\Http\Controllers\FieldController;
 use TomatoPHP\TomatoForms\Http\Controllers\FormController;
+use TomatoPHP\TomatoForms\Http\Controllers\GroupController;
 
 Route::middleware(['web', 'splade', 'verified'])->name('admin.')->group(function () {
     Route::get('admin/forms', [FormController::class, 'index'])->name('forms.index');
@@ -24,3 +25,15 @@ Route::middleware(['web', 'splade', 'verified'])->name('admin.')->group(function
     Route::post('admin/fields/{model}', [FieldController::class, 'update'])->name('fields.update');
     Route::delete('admin/fields/{model}', [FieldController::class, 'destroy'])->name('fields.destroy');
 });
+
+Route::middleware(['web', 'splade', 'verified'])->name('admin.')->group(function () {
+    Route::get('admin/groups', [GroupController::class, 'index'])->name('groups.index');
+    Route::get('admin/groups/api', [GroupController::class, 'api'])->name('groups.api');
+    Route::get('admin/groups/create', [GroupController::class, 'create'])->name('groups.create');
+    Route::post('admin/groups', [GroupController::class, 'store'])->name('groups.store');
+    Route::get('admin/groups/{model}', [GroupController::class, 'show'])->name('groups.show');
+    Route::get('admin/groups/{model}/edit', [GroupController::class, 'edit'])->name('groups.edit');
+    Route::post('admin/groups/{model}', [GroupController::class, 'update'])->name('groups.update');
+    Route::delete('admin/groups/{model}', [GroupController::class, 'destroy'])->name('groups.destroy');
+});
+
