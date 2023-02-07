@@ -4,6 +4,7 @@ namespace TomatoPHP\TomatoForms;
 
 use Illuminate\Support\ServiceProvider;
 use TomatoPHP\TomatoForms\Console\GenerateForm;
+use TomatoPHP\TomatoForms\Console\TomatoFormsInstall;
 use TomatoPHP\TomatoForms\Menus\FormMenu;
 use TomatoPHP\TomatoForms\Views\Form;
 use TomatoPHP\TomatoPHP\Services\Menu\TomatoMenuRegister;
@@ -15,7 +16,7 @@ class TomatoFormsServiceProvider extends ServiceProvider
     {
         //Register generate command
         $this->commands([
-           \TomatoPHP\TomatoForms\Console\TomatoFormsInstall::class,
+            TomatoFormsInstall::class,
             GenerateForm::class
         ]);
 
@@ -25,7 +26,7 @@ class TomatoFormsServiceProvider extends ServiceProvider
         //Publish Config
         $this->publishes([
            __DIR__.'/../config/tomato-forms.php' => config_path('tomato-forms.php'),
-        ], 'config');
+        ], 'tomato-forms-config');
 
         //Register Migrations
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
@@ -33,22 +34,23 @@ class TomatoFormsServiceProvider extends ServiceProvider
         //Publish Migrations
         $this->publishes([
            __DIR__.'/../database/migrations' => database_path('migrations'),
-        ], 'migrations');
+        ], 'tomato-forms-migrations');
+
         //Register views
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'tomato-forms');
 
         //Publish Views
         $this->publishes([
            __DIR__.'/../resources/views' => resource_path('views/vendor/tomato-forms'),
-        ], 'views');
+        ], 'tomato-forms-views');
 
         //Register Langs
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'tomato-forms');
 
         //Publish Lang
         $this->publishes([
-           __DIR__.'/../resources/lang' => resource_path('lang/vendor/tomato-forms'),
-        ], 'lang');
+           __DIR__.'/../resources/lang' => app_path('lang/vendor/tomato-forms'),
+        ], 'tomato-forms-lang');
 
         //Register Routes
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
