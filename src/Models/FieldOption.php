@@ -24,7 +24,7 @@ class FieldOption extends Model
     /**
      * @var array
      */
-    protected $fillable = ['field_id', 'type', 'label', 'key', 'created_at', 'updated_at'];
+    protected $fillable = ['field_id', 'type', 'label', 'key', 'created_at', 'updated_at','parent_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -32,5 +32,13 @@ class FieldOption extends Model
     public function field()
     {
         return $this->belongsTo('TomatoPHP\TomatoForms\Models\Field');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function childs()
+    {
+        return $this->hasMany('TomatoPHP\TomatoForms\Models\FieldOption','parent_id');
     }
 }

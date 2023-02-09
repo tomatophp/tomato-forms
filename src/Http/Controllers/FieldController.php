@@ -44,6 +44,19 @@ class FieldController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function options(Request $request): JsonResponse
+    {
+        return Tomato::json(
+            request: $request,
+            model: \TomatoPHP\TomatoForms\Models\FieldOption::class,
+        );
+    }
+
+
+    /**
      * @return View
      */
     public function create(): View
@@ -68,8 +81,8 @@ class FieldController extends Controller
             redirect: 'admin.fields.index',
         );
 
-        if($request->has('options') && count($request->get('options'))){
-            foreach ($request->get('options') as $option){
+        if ($request->has('options') && count($request->get('options'))) {
+            foreach ($request->get('options') as $option) {
                 $newOption = new FieldOption();
                 $newOption->field_id = $response['record']->id;
                 $newOption->label = [
@@ -103,12 +116,16 @@ class FieldController extends Controller
      */
     public function edit(Field $model): View
     {
-        foreach ($model->options as $item){
+
+        foreach ($model->options as $item) {
             $item->label_ar = $item->getTranslation('label', 'ar');
             $item->label_en = $item->getTranslation('label', 'en');
         }
+        $options = FieldOption::where('field_id', $model->id)->get()->toArray();
+
         return Tomato::get(
             model: $model,
+            data: ['options' => $options],
             hasMedia: true,
             collection: 'photo',
             view: 'tomato-forms::fields.edit',
@@ -132,22 +149,39 @@ class FieldController extends Controller
             redirect: 'admin.fields.index',
         );
 
-        if($request->has('options') && count($request->get('options'))){
-            FieldOption::where('field_id', $model->id)->delete();
-            foreach ($request->get('options') as $option){
-                $newOption = new FieldOption();
-                $newOption->field_id = $model->id;
-                $newOption->label = [
-                    "ar" => $option['label_ar'],
-                    "en" => $option['label_en'],
-                ];
-                $newOption->key = $option['key'];
-                $newOption->type = $option['type'];
-                $newOption->save();
+        $values = [];
+        if ($request->has('options') && count($request->get('options'))) {
+            foreach ($request->get('options') as $option) {
+                if (isset($option['id']) && $option['id'] != null) {
+                    $optionItem = FieldOption::find($option['id']);
+                    $optionItem->setTranslation('label', 'ar', $option['label_ar'])
+                        ->setTranslation('label', 'en', $option['label_en']);
+                    $optionItem->field_id = $model->id;
+                    $optionItem->parent_id = $option['parent_id'];;
+                    $optionItem->key = $option['key'];
+                    $optionItem->type = $option['type'];
+                    $optionItem->update();
+                    array_push($values, $optionItem->id);
+
+                } else {
+                    $newOption = new FieldOption();
+                    $newOption->field_id = $model->id;
+                    $newOption->parent_id = $option['parent_id'];
+                    $newOption->setTranslation('label', 'ar', $option['label_ar'])
+                        ->setTranslation('label', 'en', $option['label_en']);
+                    $newOption->key = $option['key'];
+                    $newOption->type = $option['type'];
+                    $newOption->save();
+                    array_push($values, $newOption->id);
+                }
+
             }
-        }
-        else {
+        } else {
             FieldOption::where('field_id', $model->id)->delete();
+        }
+
+        if(isset($values) && !empty($values)) {
+            FieldOption::whereNotIn('id', $values)->delete();
         }
 
         return $response['redirect'];
