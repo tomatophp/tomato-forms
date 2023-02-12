@@ -40,7 +40,7 @@
         <x-splade-checkbox name="has_options" label="{{trans('tomato-forms::global.field.has_options')}}" />
 
         <div v-if="form.has_options === true">
-            <x-tomato-repeater :options="['label_ar', 'label_en', 'type', 'value']" name="options" id="options" label="Option">
+            <x-tomato-repeater :options="['label_ar', 'label_en', 'type', 'value','parent_id']" name="options" id="options" label="Option">
                 <div class="flex flex-col space-y-4">
                     <x-splade-select v-model="repeater.main[key].type"  placeholder="Type">
                         <option value="text">{{trans('tomato-forms::global.field.types.text')}}</option>
@@ -59,6 +59,7 @@
                         <option value="textarea">{{trans('tomato-forms::global.field.types.textarea')}}</option>
                         <option value="rich">{{trans('tomato-forms::global.field.types.rich')}}</option>
                     </x-splade-select>
+                    <x-splade-select name="parent_id" :options="$options"   v-model="repeater.main[key].parent_id" option-label="label.{{app()->getLocale()}}" label="{{trans('tomato-forms::global.form.field')}}" option-value="id" />
                     <x-splade-input v-model="repeater.main[key].label_ar" type="text"  placeholder="{{trans('tomato-forms::global.field.label')}} [{{trans('tomato-forms::global.lang.ar')}}]" />
                     <x-splade-input v-model="repeater.main[key].label_en" type="text"  placeholder="{{trans('tomato-forms::global.field.label')}} [{{trans('tomato-forms::global.lang.en')}}]" />
                     <x-splade-input v-model="repeater.main[key].key"  type="text"  placeholder="{{trans('tomato-forms::global.field.key')}}" />

@@ -18,6 +18,7 @@ Route::middleware(['web', 'splade', 'verified'])->name('admin.')->group(function
 Route::middleware(['web', 'splade', 'verified'])->name('admin.')->group(function () {
     Route::get('admin/fields', [FieldController::class, 'index'])->name('fields.index');
     Route::get('admin/fields/api', [FieldController::class, 'api'])->name('fields.api');
+    Route::get('admin/options/api/{{id}}', [FieldController::class, 'options'])->name('options.api');
     Route::get('admin/fields/create', [FieldController::class, 'create'])->name('fields.create');
     Route::post('admin/fields', [FieldController::class, 'store'])->name('fields.store');
     Route::get('admin/fields/{model}', [FieldController::class, 'show'])->name('fields.show');
