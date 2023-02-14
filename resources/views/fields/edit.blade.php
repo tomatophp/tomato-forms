@@ -37,27 +37,13 @@
 
         <x-splade-file name="photo"  filepond preview />
 
-        <x-splade-checkbox name="has_options" label="{{trans('tomato-forms::global.field.has_options')}}" />
+        <x-splade-checkbox v-if="form.type == 'select' || form.type == 'checkbox' || form.type == 'radio'|| form.type == 'rang'" name="has_options" label="{{trans('tomato-forms::global.field.has_options')}}" />
 
-        <div v-if="form.has_options === true">
+        <div v-if="form.has_options === true && form.type == 'select' || form.type == 'checkbox' || form.type == 'radio'|| form.type == 'rang'">
             <x-tomato-repeater :options="['label_ar', 'label_en', 'type', 'value','parent_id']" name="options" id="options" label="Option">
                 <div class="flex flex-col space-y-4">
                     <x-splade-select v-model="repeater.main[key].type"  placeholder="Type">
                         <option value="text">{{trans('tomato-forms::global.field.types.text')}}</option>
-                        <option value="file">{{trans('tomato-forms::global.field.types.file')}}</option>
-                        <option value="number">{{trans('tomato-forms::global.field.types.number')}}</option>
-                        <option value="email">{{trans('tomato-forms::global.field.types.email')}}</option>
-                        <option value="tel">{{trans('tomato-forms::global.field.types.tel')}}</option>
-                        <option value="select">{{trans('tomato-forms::global.field.types.select')}}</option>
-                        <option value="checkbox">{{trans('tomato-forms::global.field.types.checkbox')}}</option>
-                        <option value="radio">{{trans('tomato-forms::global.field.types.radio')}}</option>
-                        <option value="rang">{{trans('tomato-forms::global.field.types.rang')}}</option>
-                        <option value="date">{{trans('tomato-forms::global.field.types.date')}}</option>
-                        <option value="datetime">{{trans('tomato-forms::global.field.types.datetime')}}</option>
-                        <option value="time">{{trans('tomato-forms::global.field.types.time')}}</option>
-                        <option value="password">{{trans('tomato-forms::global.field.types.password')}}</option>
-                        <option value="textarea">{{trans('tomato-forms::global.field.types.textarea')}}</option>
-                        <option value="rich">{{trans('tomato-forms::global.field.types.rich')}}</option>
                     </x-splade-select>
                     <x-splade-select name="parent_id" :options="$options"   v-model="repeater.main[key].parent_id" option-label="label.{{app()->getLocale()}}" label="{{trans('tomato-forms::global.form.field')}}" option-value="id" />
                     <x-splade-input v-model="repeater.main[key].label_ar" type="text"  placeholder="{{trans('tomato-forms::global.field.label')}} [{{trans('tomato-forms::global.lang.ar')}}]" />
