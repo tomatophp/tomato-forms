@@ -72,6 +72,7 @@ class FieldController extends Controller
      */
     public function store(FieldStoreRequest $request): RedirectResponse
     {
+
         $response = Tomato::store(
             request: $request,
             model: \TomatoPHP\TomatoForms\Models\Field::class,
@@ -118,14 +119,15 @@ class FieldController extends Controller
     {
 
         foreach ($model->options as $item) {
-            $item->label_ar = $item->getTranslation('label', 'ar');
-            $item->label_en = $item->getTranslation('label', 'en');
+            $item->label_ar = $item->getTranslation('label', 'ar') ?? " لا يوجد ";
+            $item->label_en = $item->getTranslation('label', 'en')?? " not found";
         }
-        $options = FieldOption::where('field_id', $model->id)->get()->toArray();
+        $options = FieldOption::where('field_id', $model->id)->get();
+
 
         return Tomato::get(
             model: $model,
-            data: ['options' => $options],
+            data: ['options' =>  $options ? $options->toArray() : null],
             hasMedia: true,
             collection: 'photo',
             view: 'tomato-forms::fields.edit',

@@ -23,13 +23,15 @@ class FieldStoreRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'type' => 'nullable|max:255|string',
+        $rulesOne =  [
+            'type' => 'required|max:255|string',
             'label.ar' => 'required|max:255|string',
-            'name.en' => 'nullable|max:255|string',
+            'label.en' => 'required|max:255|string',
             'placeholder.ar' => 'nullable|max:255|string',
             'placeholder.en' => 'nullable|max:255|string',
             'hint.ar' => 'nullable|max:255|string',
+            'unit.ar' => 'nullable|max:255|string',
+            'unit.en' => 'nullable|max:255|string',
             'hint.en' => 'nullable|max:255|string',
             'key' => 'required|max:255|string|unique:fields,key',
             'default' => 'nullable|max:255|string',
@@ -37,7 +39,19 @@ class FieldStoreRequest extends FormRequest
             'is_required' => 'nullable|boolean',
             'required_message.ar' => 'nullable|max:255|string',
             'required_message.en' => 'nullable|max:255|string',
-            'options' => 'nullable|array',
         ];
+
+        $rulesTwo = [];
+        if(request()->has('has_options') && request()->get('has_options') == '1'){
+            $rulesTwo=  [
+                'options' => 'required|array',
+                'options.*.key' => 'required|max:255|string|unique:field_options,key',
+                'options.*.label_ar' => 'required|max:255|string',
+                'options.*.label_en' => 'required|max:255|string',
+            ];
+        }
+
+        $rules = array_merge($rulesOne,$rulesTwo);
+        return $rules;
     }
 }
