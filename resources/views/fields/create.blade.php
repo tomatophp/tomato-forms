@@ -9,6 +9,10 @@
             'en' => '',
             'ar' => '',
         ],
+         'unit' => [
+            'en' => '',
+            'ar' => '',
+        ],
         'placeholder' => [
             'en' => '',
             'ar' => '',
@@ -60,15 +64,22 @@
 
         <x-splade-checkbox v-if="form.type == 'select' || form.type == 'checkbox' || form.type == 'radio'|| form.type == 'rang'" name="has_options" label="{{trans('tomato-forms::global.field.has_options')}}" />
 
+
         <div v-if="form.has_options === true  && form.type == 'select' || form.type == 'checkbox' || form.type == 'radio'|| form.type == 'rang'">
+
             <x-tomato-repeater :options="['label_ar', 'label_en', 'type', 'value']" name="options" id="options" label="Option">
                 <div class="flex flex-col space-y-4">
                     <x-splade-select v-model="repeater.main[key].type"  placeholder="Type">
                         <option value="text">{{trans('tomato-forms::global.field.types.text')}}</option>
                     </x-splade-select>
+                    <span class="text-red-500">@{{ form.errors ? form.errors['options.'+key+'.type'] : null }}</span>
+
                     <x-splade-input v-model="repeater.main[key].label_ar" type="text"  placeholder="{{trans('tomato-forms::global.field.label')}} [{{trans('tomato-forms::global.lang.ar')}}]" />
+                    <span class="text-red-500">@{{ form.errors ? form.errors['options.'+key+'.label_ar'] : null }}</span>
                     <x-splade-input v-model="repeater.main[key].label_en" type="text"  placeholder="{{trans('tomato-forms::global.field.label')}} [{{trans('tomato-forms::global.lang.en')}}]" />
+                    <span class="text-red-500">@{{ form.errors ? form.errors['options.'+key+'.label_en'] : null }}</span>
                     <x-splade-input v-model="repeater.main[key].key"  type="text"  placeholder="{{trans('tomato-forms::global.field.key')}}" />
+                    <span class="text-red-500">@{{ form.errors ? form.errors['options.'+key+'.key'] : null }}</span>
                 </div>
             </x-tomato-repeater>
         </div>

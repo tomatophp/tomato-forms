@@ -47,8 +47,12 @@
                     </x-splade-select>
                     <x-splade-select name="parent_id" :options="$options"   v-model="repeater.main[key].parent_id" option-label="label.{{app()->getLocale()}}" label="{{trans('tomato-forms::global.form.field')}}" option-value="id" />
                     <x-splade-input v-model="repeater.main[key].label_ar" type="text"  placeholder="{{trans('tomato-forms::global.field.label')}} [{{trans('tomato-forms::global.lang.ar')}}]" />
+                    <span class="text-red-500">@{{ form.errors ? form.errors['options.'+key+'.label_ar'] : null }}</span>
                     <x-splade-input v-model="repeater.main[key].label_en" type="text"  placeholder="{{trans('tomato-forms::global.field.label')}} [{{trans('tomato-forms::global.lang.en')}}]" />
+                    <span class="text-red-500">@{{ form.errors ? form.errors['options.'+key+'.label_en'] : null }}</span>
                     <x-splade-input v-model="repeater.main[key].key"  type="text"  placeholder="{{trans('tomato-forms::global.field.key')}}" />
+                    <span class="text-red-500">@{{ form.errors ? form.errors['options.'+key+'.key'] : null }}</span>
+
                 </div>
             </x-tomato-repeater>
         </div>
