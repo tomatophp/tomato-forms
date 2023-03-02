@@ -183,7 +183,7 @@ class FieldController extends Controller
         }
 
         if(isset($values) && !empty($values)) {
-            FieldOption::whereNotIn('id', $values)->delete();
+            FieldOption::where('field_id', $model->id)->whereNotIn('id', $values)->delete();
         }
 
         return $response['redirect'];
