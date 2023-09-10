@@ -32,7 +32,7 @@ return [
         "label" => "Label",
         "placeholder" => "Placeholder",
         "hint" => "Hint",
-        "key" => "Key",
+        "name" => "Name",
         "default" => "Default",
         'unit'=> "Unit",
         "has_options" => "Has Options",

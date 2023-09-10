@@ -47,8 +47,8 @@ class Form extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function fields(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function fields()
     {
-        return $this->belongsToMany(Field::class, 'form_has_fields', 'form_id', 'field_id')->withPivot('order','is_primary','group_id');
+        return $this->hasMany(FormOption::class, 'form_id', 'id');
     }
 }

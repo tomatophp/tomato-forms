@@ -11,22 +11,28 @@ use ProtoneMedia\Splade\Facades\Toast;
 use TomatoPHP\TomatoForms\Http\Requests\Form\FormStoreRequest;
 use TomatoPHP\TomatoForms\Http\Requests\Form\FormUpdateRequest;
 use TomatoPHP\TomatoForms\Models\Form;
+use TomatoPHP\TomatoForms\Models\FormOption;
 use TomatoPHP\TomatoForms\Tables\FormTable;
-use TomatoPHP\TomatoPHP\Services\Tomato;
+use TomatoPHP\TomatoAdmin\Facade\Tomato;
+use TomatoPHP\TomatoTranslations\Services\HandelTranslationInput;
 
 class FormController extends Controller
 {
+    use HandelTranslationInput;
+
     /**
      * @param Request $request
      * @return View
      */
-    public function index(Request $request): View
+    public function index(Request $request): View|JsonResponse
     {
-
         return Tomato::index(
             request: $request,
+            model: Form::class,
             view: 'tomato-forms::forms.index',
             table: FormTable::class,
+            query: Form::with('fields'),
+            resource: config('tomato-forms.index_resource') ?: null
         );
     }
 
@@ -58,36 +64,24 @@ class FormController extends Controller
      */
     public function store(FormStoreRequest $request): RedirectResponse
     {
+        $response = Tomato::store(
+            request: $request,
+            model: Form::class
+        );
 
-        $request->validated();
-        $record = \TomatoPHP\TomatoForms\Models\Form::create($request->all());
-
-        if($request->has('fields') && $request->get('fields')){
-            $fieldsArray = [];
-            foreach ($request->get('fields') as $key=>$field){
-                if(!array_key_exists($field['field'], $fieldsArray)){
-                    $fieldsArray[$field['field']] = ['order' => $key,'is_primary' => $field['is_primary'],'group_id'=> $field['group']];
-                }
-            }
-            $record->fields()->attach($fieldsArray);
-        }
-
-
-        Toast::title(trans('tomato-forms::global.form.messages.created'))->success()->autoDismiss(2);
-        return redirect()->route('admin.forms.index');
-
+        return $response->redirect;
     }
 
     /**
      * @param Form $model
      * @return View
      */
-    public function show(Form $model): View
+    public function show(Form $model): View|JsonResponse
     {
-        $model->fields = $model->fields;
         return Tomato::get(
             model: $model,
-            view: 'tomato-forms::forms.show'
+            view: 'tomato-forms::forms.show',
+            resource: config('tomato-forms.show_resource') ?: null
         );
     }
 
@@ -97,10 +91,6 @@ class FormController extends Controller
      */
     public function edit(Form $model): View
     {
-        $model->fields = $model->fields()->get()->map(static function($item){
-            return ["field" => $item->id,'is_primary'=>($item->pivot->is_primary == 1) ?true :false,'group'=> $item->pivot->group_id];
-        });
-
         return Tomato::get(
             model: $model,
             view: 'tomato-forms::forms.edit'
@@ -114,21 +104,12 @@ class FormController extends Controller
      */
     public function update(FormUpdateRequest $request, Form $model): RedirectResponse
     {
-        $request->validated();
-        $model->update($request->all());
+        $response = Tomato::update(
+            request: $request,
+            model: $model,
+        );
 
-        if($request->has('fields') && $request->get('fields')) {
-            $fieldsArray = [];
-            foreach ($request->get('fields') as $key => $field) {
-                if (!array_key_exists($field['field'], $fieldsArray)) {
-                    $fieldsArray[$field['field']] = ['order' => $key,'is_primary' => $field['is_primary'],'group_id'=> $field['group']];
-                }
-            }
-            $model->fields()->sync($fieldsArray);
-        }
-
-        Toast::title(trans('tomato-forms::global.form.messages.updated'))->success()->autoDismiss(2);
-        return redirect()->route('admin.forms.index');
+        return $response->redirect;
     }
 
     /**
@@ -137,10 +118,92 @@ class FormController extends Controller
      */
     public function destroy(Form $model): RedirectResponse
     {
-        return Tomato::destroy(
+        $response = Tomato::destroy(
             model: $model,
             message: trans('tomato-forms::global.form.messages.deleted'),
             redirect: 'admin.forms.index',
         );
+
+        return $response->redirect;
+    }
+
+    public function build(Request $request, Form $model){
+        $options = FormOption::where('form_id', $model->id)->orderBy('order', 'asc')->get();
+        foreach ($options as $option){
+            $option->label_tomato_translations_ar = $option->getTranslation('label', 'ar');
+            $option->label_tomato_translations_en = $option->getTranslation('label', 'en');
+            $option->placeholder_tomato_translations_ar = $option->getTranslation('placeholder', 'ar');
+            $option->placeholder_tomato_translations_en = $option->getTranslation('placeholder', 'en');
+            $option->hint_tomato_translations_ar = $option->getTranslation('hint', 'ar');
+            $option->hint_tomato_translations_en = $option->getTranslation('hint', 'en');
+            $option->required_message_tomato_translations_ar = $option->getTranslation('required_message', 'ar');
+            $option->required_message_tomato_translations_en = $option->getTranslation('required_message', 'en');
+            $option->options = $option->options ? $option->options : [];
+            $option->rules = $option->validation ? $option->validation : [
+                "type" => "string",
+                "min" => 1,
+                "max" => 255
+            ];
+        }
+        return view('tomato-forms::forms.builder', compact('model', 'options'));
+    }
+
+    public function order(Request $request){
+        $request->validate([
+            'orderBy' => "required|string"
+        ]);
+
+        $getAll = $request->get('all');
+        foreach ($getAll as $key => $value){
+            $option = FormOption::find($value['id']);
+            $option->order = $key;
+            $option->save();
+        }
+
+        Toast::success(__('Order Updated Success'))->autoDismiss(2);
+        return back();
+    }
+
+
+    public function options(Request $request, Form $model){
+        $request->validate([
+            "type" => "required"
+        ]);
+
+        $lastOption = FormOption::where('form_id', $model->id)->get();
+
+        foreach ($lastOption as $key=>$item){
+            $getOptions = FormOption::find($item->id);
+            $getOptions->order += 1;
+            $getOptions->save();
+        }
+
+        $option = new FormOption();
+        $option->form_id = $model->id;
+        $option->type = $request->get('type');
+        $option->name = $request->get('type');
+        $option->save();
+
+        return back();
+    }
+
+    public function formOptions(Request $request){
+        $request->validate([
+            'form_id' => "required|int|exists:forms,id",
+        ]);
+
+        $options = FormOption::where('form_id', $request->form_id)->get();
+
+        return response()->json([
+            "data" => $options
+        ]);
+    }
+
+    public function clear(Form $model){
+
+        FormOption::where('form_id', $model->id)->delete();
+
+        Toast::success(__('Form Cleared Success'))->autoDismiss(2);
+        return back();
     }
 }

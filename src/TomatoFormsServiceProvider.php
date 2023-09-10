@@ -3,11 +3,14 @@
 namespace TomatoPHP\TomatoForms;
 
 use Illuminate\Support\ServiceProvider;
+use TomatoPHP\TomatoAdmin\Facade\TomatoMenu;
 use TomatoPHP\TomatoForms\Console\GenerateForm;
 use TomatoPHP\TomatoForms\Console\TomatoFormsInstall;
 use TomatoPHP\TomatoForms\Menus\FormMenu;
 use TomatoPHP\TomatoForms\Views\Form;
+use TomatoPHP\TomatoForms\Views\Icon;
 use TomatoPHP\TomatoPHP\Services\Menu\TomatoMenuRegister;
+use TomatoPHP\TomatoAdmin\Services\Contracts\Menu;
 
 
 class TomatoFormsServiceProvider extends ServiceProvider
@@ -57,15 +60,21 @@ class TomatoFormsServiceProvider extends ServiceProvider
 
         //Register Components
         $this->loadViewComponentsAs('tomato', [
-            Form::class
+            Form::class,
+            Icon::class
         ]);
 
-        //Register Menu
-        TomatoMenuRegister::registerMenu(FormMenu::class);
+
     }
 
     public function boot(): void
     {
-        //you boot methods here
+        TomatoMenu::register([
+            Menu::make()
+                ->group(trans('tomato-forms::global.form.group'))
+                ->label(trans('tomato-forms::global.form.title'))
+                ->icon("bx bxs-notepad")
+                ->route("admin.forms.index")
+        ]);
     }
 }
