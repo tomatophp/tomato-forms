@@ -21,6 +21,10 @@ class FormController extends Controller
     use HandelTranslationInput;
 
     /**
+     * Form Index.
+     *
+     * You Can Get All Forms.
+     *
      * @param Request $request
      * @return View
      */
@@ -73,6 +77,10 @@ class FormController extends Controller
     }
 
     /**
+     *  Form Show.
+     *
+     *  Select From By ID and show fileds of it.
+     *
      * @param Form $model
      * @return View
      */

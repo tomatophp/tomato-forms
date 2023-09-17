@@ -2,6 +2,7 @@
 
 use TomatoPHP\TomatoForms\Http\Controllers\FieldOptionsController;
 use TomatoPHP\TomatoForms\Http\Controllers\FormController;
+use \TomatoPHP\TomatoForms\Http\Controllers\FormRequestController;
 
 Route::middleware(['web', 'splade', 'verified'])->name('admin.')->group(function () {
     Route::get('admin/forms', [FormController::class, 'index'])->name('forms.index');
@@ -39,8 +40,8 @@ Route::middleware(['web', 'splade', 'verified'])->name('admin.')->group(function
 Route::middleware(['auth:sanctum'])->name('api.')->group(function () {
     Route::get('api/forms', [FormController::class, 'index'])->name('forms.index');
     Route::get('api/forms/{model}', [FormController::class, 'show'])->name('forms.show');
-    Route::get('api/forms/{model}/requests', [FormController::class, 'show'])->name('forms.requests');
-    Route::post('api/forms/{model}/requests', [FormController::class, 'show'])->name('forms.requests.store');
-    Route::get('api/forms/{model}/requests/{request}', [FormController::class, 'show'])->name('forms.requests.show');
+    Route::get('api/form-requests', [FormRequestController::class, 'index'])->name('forms.requests');
+    Route::post('api/form-requests', [FormRequestController::class, 'store'])->name('forms.requests.store');
+    Route::get('api/form-requests/{model}', [FormRequestController::class, 'show'])->name('forms.requests.show');
 });
 
