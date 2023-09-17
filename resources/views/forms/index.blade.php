@@ -23,8 +23,12 @@
                 </x-splade-cell>
                 <x-splade-cell actions>
                     <div class="flex justify-start">
+
                         <x-tomato-admin-button success type="icon" title="{{trans('tomato-admin::global.crud.view')}}" :href="route('admin.forms.show', $item->id)">
                             <x-heroicon-s-eye class="h-6 w-6"/>
+                        </x-tomato-admin-button>
+                        <x-tomato-admin-button warning type="icon" title="{{__('Build')}}" :href="route('admin.form-requests.index') . '?form-requests?filter[form_id]='. $item->id">
+                            <x-heroicon-s-chat-bubble-bottom-center class="h-6 w-6"/>
                         </x-tomato-admin-button>
                         <x-tomato-admin-button type="icon" title="{{__('Build')}}" :href="route('admin.forms.build', $item->id)">
                             <x-heroicon-s-home-modern class="h-6 w-6"/>

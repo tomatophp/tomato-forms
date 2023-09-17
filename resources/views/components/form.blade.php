@@ -1,4 +1,4 @@
-<x-splade-form :method="$method" :action="$action">
+<x-splade-form :method="$method" :action="$action" :default="['form_id'=> $form->id]">
    <div class="flex flex-col space-y-4">
        @foreach($fields as $field)
            @if($field->is_reactive)

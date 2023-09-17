@@ -20,8 +20,8 @@ class Form extends Component
         public string                           $action = "/",
     )
     {
-        $this->method = $form->method;
-        $this->action = $form->endpoint;
+        $this->method = $this->method ? $this->method : $form->method;
+        $this->action = $this->action ? $this->action : $form->endpoint;
         $this->fields = $form->fields()->orderBy('order', 'asc')->get();
     }
 

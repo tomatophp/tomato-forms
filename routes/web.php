@@ -19,6 +19,18 @@ Route::middleware(['web', 'splade', 'verified'])->name('admin.')->group(function
     Route::delete('admin/forms/{model}', [FormController::class, 'destroy'])->name('forms.destroy');
 });
 
+Route::middleware(['web','auth', 'splade', 'verified'])->name('admin.')->group(function () {
+    Route::get('admin/form-requests', [\TomatoPHP\TomatoForms\Http\Controllers\FormRequestController::class, 'index'])->name('form-requests.index');
+    Route::get('admin/form-requests/api', [\TomatoPHP\TomatoForms\Http\Controllers\FormRequestController::class, 'api'])->name('form-requests.api');
+    Route::get('admin/form-requests/create', [\TomatoPHP\TomatoForms\Http\Controllers\FormRequestController::class, 'create'])->name('form-requests.create');
+    Route::post('admin/form-requests', [\TomatoPHP\TomatoForms\Http\Controllers\FormRequestController::class, 'store'])->name('form-requests.store');
+    Route::get('admin/form-requests/{model}', [\TomatoPHP\TomatoForms\Http\Controllers\FormRequestController::class, 'show'])->name('form-requests.show');
+    Route::get('admin/form-requests/{model}/edit', [\TomatoPHP\TomatoForms\Http\Controllers\FormRequestController::class, 'edit'])->name('form-requests.edit');
+    Route::post('admin/form-requests/{model}', [\TomatoPHP\TomatoForms\Http\Controllers\FormRequestController::class, 'update'])->name('form-requests.update');
+    Route::delete('admin/form-requests/{model}', [\TomatoPHP\TomatoForms\Http\Controllers\FormRequestController::class, 'destroy'])->name('form-requests.destroy');
+});
+
+
 Route::middleware(['web', 'splade', 'verified'])->name('admin.')->group(function () {
     Route::post('admin/form-options/{model}', [FieldOptionsController::class, 'update'])->name('form-options.update');
     Route::delete('admin/form-options/{model}', [FieldOptionsController::class, 'destroy'])->name('form-options.destroy');
@@ -27,5 +39,8 @@ Route::middleware(['web', 'splade', 'verified'])->name('admin.')->group(function
 Route::middleware(['auth:sanctum'])->name('api.')->group(function () {
     Route::get('api/forms', [FormController::class, 'index'])->name('forms.index');
     Route::get('api/forms/{model}', [FormController::class, 'show'])->name('forms.show');
+    Route::get('api/forms/{model}/requests', [FormController::class, 'show'])->name('forms.requests');
+    Route::post('api/forms/{model}/requests', [FormController::class, 'show'])->name('forms.requests.store');
+    Route::get('api/forms/{model}/requests/{request}', [FormController::class, 'show'])->name('forms.requests.show');
 });
 
