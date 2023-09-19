@@ -3,6 +3,8 @@
 namespace TomatoPHP\TomatoForms\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * @property integer $id
@@ -15,8 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $updated_at
  * @property Form $form
  */
-class FormRequest extends Model
+class FormRequest extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
     /**
      * @var array
      */
@@ -34,7 +38,26 @@ class FormRequest extends Model
         return $this->belongsTo('TomatoPHP\TomatoForms\Models\Form');
     }
 
+    public function formRequestsMetas(){
+        return $this->hasMany(FormRequestMeta::class, 'form_request_id');
+    }
+
+    public function meta(string $key, string|null $value=null): Model|string|null
+    {
+        if($value){
+            return $this->formRequestsMetas()->updateOrCreate(['key' => $key], ['value' => $value]);
+        }
+        else {
+            return $this->formRequestsMetas()->where('key', $key)->first()?->value;
+        }
+    }
+
     public function modelable()
+    {
+        return $this->morphTo();
+    }
+
+    public function serviceable()
     {
         return $this->morphTo();
     }

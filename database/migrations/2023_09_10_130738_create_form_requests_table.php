@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('model_type')->nullable();
             $table->unsignedBigInteger('model_id')->nullable();
 
+            //Morph Service
+            $table->string('service_type')->nullable();
+            $table->unsignedBigInteger('service_id')->nullable();
+
             $table->foreignId('form_id')->constrained('forms');
             $table->string('status')->default('pending')->nullable();
             $table->json('payload')->nullable();

@@ -90,8 +90,12 @@ class FormRequestController extends Controller
            "payload" => $request->has('payload') ? $request->get('payload') : $request->all(),
         ]);
 
-
-
+        if($request->has('service_id') && config('tomato-forms.service_type', null)){
+            $request->merge([
+                "service_type" => config('tomato-forms.service_type'),
+                "service_id" => $request->get('service_id'),
+            ]);
+        }
 
         $getFromFields = \TomatoPHP\TomatoForms\Models\Form::find($request->get('form_id'))?->fields;
         if($getFromFields){
@@ -137,6 +141,18 @@ class FormRequestController extends Controller
             message: __('FormRequest updated successfully'),
             redirect: 'admin.form-requests.index',
         );
+
+        if($request->has('images') && is_array($request->get('images')) && count($request->get('images'))){
+            foreach ($request->get('images') as $image){
+                $response->record->addMedia($image)->preservingOriginal()->toMediaCollection('images');
+            }
+        }
+
+        if($request->has('meta')){
+            foreach ($request->get('meta') as $key=>$value){
+                $response->record->meta($key, $value);
+            }
+        }
 
         if($response instanceof JsonResponse){
             return $response;
