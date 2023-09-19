@@ -62,7 +62,6 @@ return new class extends Migration
         });
 
         \Illuminate\Support\Facades\DB::select('SET foreign_key_checks = 0');
-        Schema::hasTable('groups')? \Illuminate\Support\Facades\DB::select('DROP TABLE `groups`') :null;
         Schema::hasTable('form_has_fields')? \Illuminate\Support\Facades\DB::select('DROP TABLE `form_has_fields`') :null;
         Schema::hasTable('field_options')? \Illuminate\Support\Facades\DB::select('DROP TABLE `field_options`') :null;
         Schema::hasTable('fields')? \Illuminate\Support\Facades\DB::select('DROP TABLE `fields`') :null;
