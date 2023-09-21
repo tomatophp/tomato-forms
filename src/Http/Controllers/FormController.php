@@ -84,8 +84,10 @@ class FormController extends Controller
      * @param Form $model
      * @return View
      */
-    public function show(Form $model): View|JsonResponse
+    public function show($model): View|JsonResponse
     {
+        $model= Form::find($model)->with('fields')->first();
+
         return Tomato::get(
             model: $model,
             view: 'tomato-forms::forms.show',
