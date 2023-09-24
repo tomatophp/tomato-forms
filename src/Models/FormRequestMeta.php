@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $updated_at
  * @property Form $form
  */
-class FormRequest extends Model
+class FormRequestMeta extends Model
 {
     /**
      * @var array
