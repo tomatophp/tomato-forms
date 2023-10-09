@@ -73,17 +73,17 @@
                 class="cursor-move"
                 :levels="1" :options="$options->toArray()" order-by="order" url="{{route('admin.forms.order', $model->id)}}">
                 <div class="rounded-lg border bg-white">
-                    <x-splade-form default="darg.item" preserve-scroll method="POST" v-bind:action="'{{url('admin/form-options')}}/'+darg.item.id">
+                    <x-splade-form default="drag.item" preserve-scroll method="POST" v-bind:action="'{{url('admin/form-options')}}/'+drag.item.id">
                         <div class="p-4 flex justifiy-between gap-2">
                             <div class="flex justifiy-start gap-2 w-full mt-2">
                                 <div>
-                                    <x-tomato-icon icon="`${darg.item.type}`" class="w-5 h-5" />
+                                    <x-tomato-icon icon="`${drag.item.type}`" class="w-5 h-5" />
                                 </div>
-                                <h1 class="font-bold">@{{ darg.item.type.toUpperCase() }}</h1>
+                                <h1 class="font-bold">@{{ drag.item.type.toUpperCase() }}</h1>
                             </div>
 
                             <div>
-                                <x-tomato-admin-button confirm method="DELETE" danger v-bind:href="'{{url('admin/form-options')}}/'+darg.item.id">
+                                <x-tomato-admin-button confirm method="DELETE" danger v-bind:href="'{{url('admin/form-options')}}/'+drag.item.id">
                                     <x-heroicon-s-trash class="w-4 h-4" />
                                     {{__('Delete')}}
                                 </x-tomato-admin-button>
@@ -94,7 +94,7 @@
                             <x-splade-data
                                     default="{showLabel:false, showOptions:false}"
                                     local-storage
-                                    v-bind:remember="'input-'+darg.item.id"
+                                    v-bind:remember="'input-'+drag.item.id"
                             >
                                 <div class="flex justifiy-between gap-2">
                                     <x-splade-input class="w-full" name="name" :label="__('Key')" :placeholder="__('Key')" />
@@ -139,7 +139,7 @@
                                             <x-splade-input class="w-full" name="reactive_where"   :label="__('Is Equle To')" :placeholder="__('Is Equle To')" />
                                         </div>
                                     </div>
-                                    <div v-if="darg.item.type === 'select'">
+                                    <div v-if="drag.item.type === 'select'">
                                         <x-splade-checkbox class="w-full" name="has_options" :label="__('Has Options')" :placeholder="__('Has Options')" />
                                         <div v-if="form.has_options" class="my-4">
                                             <x-tomato-admin-repeater name="options" :options="['key', 'value_ar', 'value_en']">
@@ -151,13 +151,13 @@
                                             </x-tomato-admin-repeater>
                                         </div>
                                     </div>
-                                    <div v-if="darg.item.type === 'select'">
+                                    <div v-if="drag.item.type === 'select'">
                                         <x-splade-checkbox class="w-full" name="is_from_table" :label="__('Get Data From Endpoint')" :placeholder="__('Get Data From Table')" />
                                         <div v-if="form.is_from_table" class="my-4">
                                             <x-splade-input class="w-full" name="table_name"  :label="__('Endpoint')" :placeholder="__('Table Name')" />
                                         </div>
                                     </div>
-                                    <x-splade-checkbox v-if="darg.item.type === 'select' || darg.item.type === 'file'" class="w-full" name="is_multi" :label="__('Is Multi')" :placeholder="__('Is Multi')" />
+                                    <x-splade-checkbox v-if="drag.item.type === 'select' || drag.item.type === 'file'" class="w-full" name="is_multi" :label="__('Is Multi')" :placeholder="__('Is Multi')" />
 
                                 </div>
                             </x-splade-data>
