@@ -35,7 +35,9 @@ class FormController extends Controller
             model: Form::class,
             view: 'tomato-forms::forms.index',
             table: FormTable::class,
-            query: Form::with('fields'),
+            query: Form::with('fields',function ($query){
+                $query->orderBy('order', 'asc');
+            }),
             resource: config('tomato-forms.index_resource') ?: null
         );
     }
