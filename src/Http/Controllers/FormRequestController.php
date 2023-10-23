@@ -140,22 +140,30 @@ class FormRequestController extends Controller
             model: \TomatoPHP\TomatoForms\Models\FormRequest::class,
             message: __('FormRequest updated successfully'),
             redirect: 'admin.form-requests.index',
+            hasMedia: true,
+            collection: [
+                "images" => true
+            ]
         );
 
-        if($request->has('images') && is_array($request->get('images')) && count($request->get('images'))){
-            foreach ($request->get('images') as $image){
-                $response->record->addMedia($image)->preservingOriginal()->toMediaCollection('images');
-            }
-        }
-
-        if($request->has('meta')){
-            foreach ($request->get('meta') as $key=>$value){
-                $response->record->meta($key, $value);
-            }
-        }
 
         if($response instanceof JsonResponse){
+            $record = json_decode($response->getContent());
+            $record = FormRequest::find($record['data']['id']);
+            if($request->has('meta')){
+                foreach ($request->get('meta') as $key=>$value){
+                    $record->meta($key, $value);
+                }
+            }
+
             return $response;
+        }
+        else {
+            if($request->has('meta')){
+                foreach ($request->get('meta') as $key=>$value){
+                    $response->record->meta($key, $value);
+                }
+            }
         }
 
         return $response->redirect;
@@ -177,7 +185,11 @@ class FormRequestController extends Controller
         return Tomato::get(
             model: $model,
             view: 'tomato-forms::form-requests.show',
-            resource: config('tomato-forms.requests_show_resource') ?: null
+            resource: config('tomato-forms.requests_show_resource') ?: null,
+            hasMedia: true,
+            collection: [
+                "images" => true
+            ]
         );
     }
 
@@ -212,10 +224,28 @@ class FormRequestController extends Controller
             ],
             message: __('FormRequest updated successfully'),
             redirect: 'admin.form-requests.index',
+            hasMedia: true,
+            collection: [
+                "images" => true
+            ]
         );
 
          if($response instanceof JsonResponse){
+             $record = json_decode($response->getContent());
+             $record = FormRequest::find($record['data']['id']);
+             if($request->has('meta')){
+                 foreach ($request->get('meta') as $key=>$value){
+                     $record->meta($key, $value);
+                 }
+             }
              return $response;
+         }
+         else {
+             if($request->has('meta')){
+                 foreach ($request->get('meta') as $key=>$value){
+                     $response->record->meta($key, $value);
+                 }
+             }
          }
 
          return $response->redirect;
@@ -231,6 +261,10 @@ class FormRequestController extends Controller
             model: $model,
             message: __('FormRequest deleted successfully'),
             redirect: 'admin.form-requests.index',
+            hasMedia: true,
+            collection: [
+                "images" => true
+            ]
         );
 
         if($response instanceof JsonResponse){
