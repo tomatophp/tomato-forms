@@ -148,7 +148,7 @@ class FormRequestController extends Controller
 
 
         if($response instanceof JsonResponse){
-            $record = json_decode($response->getContent());
+            $record = json_decode($response->getContent(), true);
             $record = FormRequest::find($record['data']['id']);
             if($request->has('meta')){
                 foreach ($request->get('meta') as $key=>$value){
@@ -182,6 +182,16 @@ class FormRequestController extends Controller
     public function show($model): View|JsonResponse
     {
         $model = FormRequest::find($model);
+        $model->images = $model->getMedia('images')->map(function ($item){
+            return $item->getUrl();
+        });
+        $model->meta = $model->formRequestsMetas()->get()->map(function ($item){
+            return [
+                "key" => $item->key,
+                "value" => $item->value
+            ];
+        });
+
         return Tomato::get(
             model: $model,
             view: 'tomato-forms::form-requests.show',
@@ -231,7 +241,7 @@ class FormRequestController extends Controller
         );
 
          if($response instanceof JsonResponse){
-             $record = json_decode($response->getContent());
+             $record = json_decode($response->getContent(), true);
              $record = FormRequest::find($record['data']['id']);
              if($request->has('meta')){
                  foreach ($request->get('meta') as $key=>$value){
