@@ -90,6 +90,7 @@ class FormController extends Controller
     {
         $model= Form::where('id',$model)->with('fields')->first();
 
+
         return Tomato::get(
             model: $model,
             view: 'tomato-forms::forms.show',
