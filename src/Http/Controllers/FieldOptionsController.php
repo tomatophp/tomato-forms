@@ -22,9 +22,6 @@ class FieldOptionsController extends Controller
                 }
             }]
         ]);
-        $request->merge([
-           "validation" => $request->get('rules')
-        ]);
         $response = Tomato::update(
             request: $request,
             model: $model,
