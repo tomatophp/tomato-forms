@@ -18,8 +18,10 @@ class Form extends Component
         public \TomatoPHP\TomatoForms\Models\Form $form,
         public string                           $method = "POST",
         public string                           $action = "/",
+        public array                            $default = [],
     )
     {
+        $default['form_id'] = $form->id;
         $this->method = $this->method ? $this->method : $form->method;
         $this->action = $this->action ? $this->action : $form->endpoint;
         $this->fields = $form->fields()->orderBy('order', 'asc')->get();

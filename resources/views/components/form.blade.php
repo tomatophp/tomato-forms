@@ -1,4 +1,4 @@
-<x-splade-form :method="$method" :action="$action" :default="['form_id'=> $form->id]">
+<x-splade-form :method="$method" :action="$action" :default="$default" {{ $attributes }}>
    <div class="flex flex-col space-y-4">
        @foreach($fields as $field)
            @if($field->is_reactive)
@@ -20,9 +20,9 @@
 
                    @elseif($field->type === 'select')
                        @if($field->is_from_table)
-                           <x-splade-select choices :name="$field->name" :remote-url="$field->table_name" remote-root="data" option-label="name" option-value="id" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}" required="{{$field->is_required}}" />
+                           <x-splade-select choices :name="$field->name" :remote-url="$field->table_name" remote-root="data" option-label="name" option-value="id" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}" />
                        @else
-                       <x-splade-select choices :name="$field->name" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}" required="{{$field->is_required}}">
+                       <x-splade-select choices :name="$field->name" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}">
                            @if($field->has_options)
                                @foreach($field->options as $option)
                                    <option value="{{$option['key']}}">{{$option['value_'.app()->getLocale()]}}</option>
@@ -63,9 +63,9 @@
                    <x-splade-radio :name="$field->name" :type="$field->type"   :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}" required="{{$field->is_required}}"/>
                @elseif($field->type === 'select')
                    @if($field->is_from_table)
-                       <x-splade-select choices :name="$field->name" :remote-url="$field->table_name" remote-root="data" option-label="name" option-value="id" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}" required="{{$field->is_required}}" />
+                       <x-splade-select choices :name="$field->name" :remote-url="$field->table_name" remote-root="data" option-label="name" option-value="id" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}"  />
                    @else
-                       <x-splade-select choices :name="$field->name" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}" required="{{$field->is_required}}">
+                       <x-splade-select choices :name="$field->name" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}">
                            @if($field->has_options)
                                @foreach($field->options as $option)
                                    <option value="{{$option['key']}}">{{$option['value_'.app()->getLocale()]}}</option>
