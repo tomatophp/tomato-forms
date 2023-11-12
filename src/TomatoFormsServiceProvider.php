@@ -6,7 +6,9 @@ use Illuminate\Support\ServiceProvider;
 use TomatoPHP\TomatoAdmin\Facade\TomatoMenu;
 use TomatoPHP\TomatoForms\Console\GenerateForm;
 use TomatoPHP\TomatoForms\Console\TomatoFormsInstall;
+use TomatoPHP\TomatoForms\Facades\TomatoForms;
 use TomatoPHP\TomatoForms\Menus\FormMenu;
+use TomatoPHP\TomatoForms\Services\RegisterForms;
 use TomatoPHP\TomatoForms\Views\Form;
 use TomatoPHP\TomatoForms\Views\Icon;
 use TomatoPHP\TomatoPHP\Services\Menu\TomatoMenuRegister;
@@ -64,7 +66,9 @@ class TomatoFormsServiceProvider extends ServiceProvider
             Icon::class
         ]);
 
-
+        app()->bind('tomato-forms', function (){
+            return new RegisterForms();
+        });
     }
 
     public function boot(): void
