@@ -27,7 +27,10 @@
         "laravel": {
             "providers": [
                 "TomatoPHP\\TomatoForms\\TomatoFormsServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "TomatoForms": "TomatoPHP\\TomatoForms\\Facades\\TomatoForms"
+            }
         }
     },
     "authors": [
