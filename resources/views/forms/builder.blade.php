@@ -344,8 +344,11 @@
                                         </div>
                                         <div v-if="drag.item.type === 'select'">
                                             <x-splade-checkbox class="w-full" name="is_from_table" :label="__('Get Data From Endpoint')" :placeholder="__('Get Data From Table')" />
-                                            <div v-if="form.is_from_table" class="my-4">
+                                            <div v-if="form.is_from_table" class="my-4 flex flex-col gap-4">
                                                 <x-splade-input class="w-full" name="table_name"  :label="__('Endpoint')" :placeholder="__('Table Name')" />
+                                                <x-splade-input class="w-full" name="validation[option_root]"  :label="__('Option Root')" :placeholder="__('Option Root')" />
+                                                <x-splade-input class="w-full" name="validation[option_label]"  :label="__('Option Label')" :placeholder="__('Option Label')" />
+                                                <x-splade-input class="w-full" name="validation[option_value]"  :label="__('Option Value')" :placeholder="__('Option Value')" />
                                             </div>
                                         </div>
                                         <x-splade-checkbox v-if="drag.item.type === 'select' || drag.item.type === 'file'" class="w-full" name="is_multi" :label="__('Is Multi')" :placeholder="__('Is Multi')" />
