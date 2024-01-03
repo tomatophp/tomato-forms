@@ -3,6 +3,8 @@
 namespace TomatoPHP\TomatoForms\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * @property integer $id
@@ -15,8 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $updated_at
  * @property Form $form
  */
-class FormRequestMeta extends Model
+class FormRequestMeta extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
     /**
      * @var array
      */
