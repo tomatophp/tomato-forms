@@ -57,11 +57,11 @@ class FormTable extends AbstractTable
             )
             ->export()
             ->defaultSort('id')
-            ->column(key: 'actions',label: trans('tomato-admin::global.crud.actions'))
             ->column(key: 'id',label: trans('tomato-forms::global.form.id'), sortable: true, hidden: true)
             ->column(key: 'title',label: trans('tomato-forms::global.form.form_title'), sortable: true)
             ->column(key: 'description',label: trans('tomato-forms::global.form.description'), sortable: true)
             ->column(key: 'is_active',label: trans('tomato-forms::global.form.is_active'), sortable: true)
+            ->column(key: 'actions',label: trans('tomato-admin::global.crud.actions'))
             ->paginate(15);
     }
 }

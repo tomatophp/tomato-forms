@@ -13,5 +13,5 @@
         <h1 class="text-lg font-bold">{{$model->title}}</h1>
         <p class="text-sm text-gray-600">{{$model->description}}</p>
     </div>
-    <x-tomato-form :form="$model" :action="route('admin.form-requests.store')"></x-tomato-form>
+    <x-tomato-form :form="$model" :default="['form_id'=>$model->id]" :action="route('admin.form-requests.store')"></x-tomato-form>
 </x-tomato-admin-container>

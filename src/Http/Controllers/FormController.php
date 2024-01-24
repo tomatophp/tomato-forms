@@ -143,14 +143,10 @@ class FormController extends Controller
     public function build(Request $request, Form $model){
         $options = FormOption::where('form_id', $model->id)->orderBy('order', 'asc')->get();
         foreach ($options as $option){
-            $option->label_tomato_translations_ar = $option->getTranslation('label', 'ar');
-            $option->label_tomato_translations_en = $option->getTranslation('label', 'en');
-            $option->placeholder_tomato_translations_ar = $option->getTranslation('placeholder', 'ar');
-            $option->placeholder_tomato_translations_en = $option->getTranslation('placeholder', 'en');
-            $option->hint_tomato_translations_ar = $option->getTranslation('hint', 'ar');
-            $option->hint_tomato_translations_en = $option->getTranslation('hint', 'en');
-            $option->required_message_tomato_translations_ar = $option->getTranslation('required_message', 'ar');
-            $option->required_message_tomato_translations_en = $option->getTranslation('required_message', 'en');
+            $option->label = $option->label ?? (object)[];
+            $option->placeholder = $option->placeholder ?? (object)[];
+            $option->hint = $option->hint ?? (object)[];
+            $option->required_message = $option->required_message ?? (object)[];
             $option->options = $option->options ? $option->options : [];
             $option->rules = $option->validation ? $option->validation : [
                 "type" => "string",

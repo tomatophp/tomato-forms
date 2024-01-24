@@ -333,11 +333,12 @@
                                         <div v-if="drag.item.type === 'select'">
                                             <x-splade-checkbox class="w-full" name="has_options" :label="__('Has Options')" :placeholder="__('Has Options')" />
                                             <div v-if="form.has_options" class="my-4">
-                                                <x-tomato-admin-repeater name="options" :options="['key', 'value_ar', 'value_en']">
-                                                    <div class="flex justifiy-between gap-2">
+                                                <x-tomato-admin-repeater name="options" :options="['key']">
+                                                    <div class="flex flex-col gap-2">
                                                         <x-splade-input class="w-full" v-model="repeater.main[key].key"  :label="__('Option Value')" :placeholder="__('Option Value')" />
-                                                        <x-splade-input class="w-full" v-model="repeater.main[key].value_ar"   :label="__('Option Label [AR]')" :placeholder="__('Option Label [AR]')" />
-                                                        <x-splade-input class="w-full" v-model="repeater.main[key].value_en"   :label="__('Option Label [EN]')" :placeholder="__('Option Label [EN]')" />
+                                                        @foreach(config('tomato-admin.langs') as $lang)
+                                                            <x-splade-input class="w-full" v-model="repeater.main[key].value_{{$lang['key']}}"   :label="__('Option Label') .' ['. $lang['label'][app()->getLocale()] . ']'" />
+                                                        @endforeach
                                                     </div>
                                                 </x-tomato-admin-repeater>
                                             </div>
