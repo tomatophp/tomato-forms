@@ -25,15 +25,15 @@ class FormUpdateRequest extends FormRequest
     {
         return [
             'type' => 'nullable|max:255|string',
-            'name.ar' => 'sometimes|max:255|string',
-            'name.en' => 'sometimes|max:255|string',
+            'name' => 'sometimes|min:1|array',
+            'name.*' => 'sometimes|max:255|string',
             'key' => 'sometimes|max:255|string',
             'endpoint' => 'nullable|max:255|string',
             'method' => 'nullable|max:255|string',
-            'title.ar' => 'nullable|max:255|string',
-            'title.en' => 'nullable|max:255|string',
-            'description.ar' => 'nullable|max:65535',
-            'description.en' => 'nullable|max:65535',
+            'title' => 'nullable|min:1|array',
+            'title.*' => 'nullable|max:255|string',
+            'description' => 'nullable|array',
+            'description.*' => 'nullable|max:65535',
             'is_active' => 'nullable',
             'fields' => 'nullable|array',
         ];
