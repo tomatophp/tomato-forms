@@ -4,7 +4,7 @@ use TomatoPHP\TomatoForms\Http\Controllers\FieldOptionsController;
 use TomatoPHP\TomatoForms\Http\Controllers\FormController;
 use \TomatoPHP\TomatoForms\Http\Controllers\FormRequestController;
 
-Route::middleware(['web', 'splade', 'verified'])->name('admin.')->group(function () {
+Route::middleware(array_merge(['splade', 'auth'], config('tomato-admin.route_middlewares')))->name('admin.')->group(function () {
     Route::get('admin/forms', [FormController::class, 'index'])->name('forms.index');
     Route::post('admin/forms/{model}/clear', [FormController::class, 'clear'])->name('forms.clear');
     Route::get('admin/forms/api', [FormController::class, 'api'])->name('forms.api');
@@ -20,7 +20,7 @@ Route::middleware(['web', 'splade', 'verified'])->name('admin.')->group(function
     Route::delete('admin/forms/{model}', [FormController::class, 'destroy'])->name('forms.destroy');
 });
 
-Route::middleware(['web','auth', 'splade', 'verified'])->name('admin.')->group(function () {
+Route::middleware(array_merge(['splade', 'auth'], config('tomato-admin.route_middlewares')))->name('admin.')->group(function () {
     Route::get('admin/form-requests', [\TomatoPHP\TomatoForms\Http\Controllers\FormRequestController::class, 'index'])->name('form-requests.index');
     Route::get('admin/form-requests/api', [\TomatoPHP\TomatoForms\Http\Controllers\FormRequestController::class, 'api'])->name('form-requests.api');
     Route::get('admin/form-requests/create', [\TomatoPHP\TomatoForms\Http\Controllers\FormRequestController::class, 'create'])->name('form-requests.create');
@@ -32,7 +32,7 @@ Route::middleware(['web','auth', 'splade', 'verified'])->name('admin.')->group(f
 });
 
 
-Route::middleware(['web', 'splade', 'verified'])->name('admin.')->group(function () {
+Route::middleware(array_merge(['splade', 'auth'], config('tomato-admin.route_middlewares')))->name('admin.')->group(function () {
     Route::post('admin/form-options/{model}', [FieldOptionsController::class, 'update'])->name('form-options.update');
     Route::delete('admin/form-options/{model}', [FieldOptionsController::class, 'destroy'])->name('form-options.destroy');
 });

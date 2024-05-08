@@ -13,58 +13,58 @@
             {{__('Preview')}}
         </x-tomato-admin-button>
     </x-slot:buttons>
-    <x-splade-form method="POST" action="{{route('admin.forms.options', $model->id)}}">
+    <x-splade-form method="POST" action="{{route('admin.forms.options', $model->id)}}" class="text-zinc-900 dark:text-zinc-100">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 mb-4">
-            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'text'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border rounded-lg p-4">
-                <x-tomato-icon icon="text" class="w-8 h-8" />
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'text'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
+                <x-tomato-icon icon="text" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
                 <h3 class="text-sm text-center">{{__('Text')}}</h3>
             </x-splade-link>
-            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'number'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border rounded-lg  p-4">
-                <x-tomato-icon icon="number" class="w-8 h-8" />
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'number'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg  p-4">
+                <x-tomato-icon icon="number" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
                 <h3 class="text-sm text-center">{{__('Number')}}</h3>
             </x-splade-link>
-            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'date'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border rounded-lg  p-4">
-                <x-tomato-icon icon="date" class="w-8 h-8" />
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'date'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg  p-4">
+                <x-tomato-icon icon="date" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
                 <h3 class="text-sm text-center">{{__('Date')}}</h3>
             </x-splade-link>
-            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'time'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border rounded-lg  p-4">
-                <x-tomato-icon icon="time" class="w-8 h-8" />
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'time'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg  p-4">
+                <x-tomato-icon icon="time" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
                 <h3 class="text-sm text-center">{{__('Time')}}</h3>
             </x-splade-link>
-            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'checkbox'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border rounded-lg  p-4">
-                <x-tomato-icon icon="checkbox" class="w-8 h-8" />
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'checkbox'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg  p-4">
+                <x-tomato-icon icon="checkbox" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
                 <h3 class="text-sm text-center">{{__('Checkbox')}}</h3>
             </x-splade-link>
-            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'radio'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border rounded-lg  p-4">
-                <x-tomato-icon icon="radio" class="w-8 h-8" />
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'radio'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg  p-4">
+                <x-tomato-icon icon="radio" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
                 <h3 class="text-sm text-center">{{__('Radio')}}</h3>
             </x-splade-link>
-            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'range'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border rounded-lg  p-4">
-                <x-tomato-icon icon="range" class="w-8 h-8" />
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'range'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg  p-4">
+                <x-tomato-icon icon="range" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
                 <h3 class="text-sm text-center">{{__('Range')}}</h3>
             </x-splade-link>
-            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'datetime'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border rounded-lg  p-4">
-                <x-tomato-icon icon="datetime" class="w-8 h-8" />
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'datetime'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg  p-4">
+                <x-tomato-icon icon="datetime" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
                 <h3 class="text-sm text-center">{{__('Date Time')}}</h3>
             </x-splade-link>
-            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'rich'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border rounded-lg p-4">
-                <x-tomato-icon icon="rich" class="w-8 h-8" />
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'rich'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
+                <x-tomato-icon icon="rich" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
                 <h3 class="text-sm text-center">{{__('Rich Text')}}</h3>
             </x-splade-link>
-            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'select'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border rounded-lg p-4">
-                <x-tomato-icon icon="select" class="w-8 h-8" />
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'select'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
+                <x-tomato-icon icon="select" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
                 <h3 class="text-sm text-center">{{__('Select')}}</h3>
             </x-splade-link>
-            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'color'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border rounded-lg p-4">
-                <x-tomato-icon icon="color" class="w-8 h-8" />
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'color'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
+                <x-tomato-icon icon="color" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
                 <h3 class="text-sm text-center">{{__('Color')}}</h3>
             </x-splade-link>
-            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'textarea'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border rounded-lg p-4">
-                <x-tomato-icon icon="textarea" class="w-8 h-8" />
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'textarea'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
+                <x-tomato-icon icon="textarea" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
                 <h3 class="text-sm text-center">{{__('Textarea')}}</h3>
             </x-splade-link>
-            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'file'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border rounded-lg p-4">
-                <x-tomato-icon icon="file" class="w-8 h-8" />
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'file'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
+                <x-tomato-icon icon="file" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
                 <h3 class="text-sm text-center">{{__('File')}}</h3>
             </x-splade-link>
         </div>
@@ -86,9 +86,9 @@
                     v-bind:remember="'input-'+drag.item.id"
                     local-storage
                 >
-                    <div class="rounded-lg border bg-white">
+                    <div class="rounded-lg border bg-white dark:bg-zinc-800 dark:border-zinc-700">
                         <x-splade-form default="drag.item" preserve-scroll method="POST" v-bind:action="'{{url('admin/form-options')}}/'+drag.item.id">
-                            <div class="p-4 flex justifiy-between gap-2">
+                            <div class="p-4 flex justifiy-between gap-2 border-b dark:border-zinc-700 border-zinc-200">
                                 <div class="flex justifiy-start gap-2 w-full mt-2">
                                     <div>
                                         <x-tomato-icon icon="`${drag.item.type}`" class="w-5 h-5" />
@@ -107,19 +107,18 @@
                                     </x-tomato-admin-button>
                                 </div>
                             </div>
-                            <hr>
                             <div class="flex flex-col space-y-4 justify-start p-4 w-full">
 
                                 <div v-if="data.showInput">
                                     <label v-if="form.type === 'text' || form.type === 'number'">
-                                        <span class="block text-sm font-medium leading-6 text-gray-950 dark:text-white"
+                                        <span class="block text-sm font-medium leading-6 text-zinc-950 dark:text-white"
                                               v-text="form.label?.{{  app()->getLocale() }}"
                                         >
                                         </span>
-                                        <div  class="flex rounded-lg border border-gray-300 dark:border-gray-700 shadow-sm dark:text-white">
+                                        <div  class="flex rounded-lg border border-zinc-300 dark:border-zinc-700 shadow-sm dark:text-white">
                                             <input
                                                 :type="form.validation?.type ? form.validation?.type : 'text'"
-                                                class="fi-input block w-full border-none bg-transparent py-1.5 text-base text-gray-950 outline-none transition duration-75 placeholder:text-gray-400 disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)] disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500 dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)] dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.500)] sm:text-sm sm:leading-6 ps-3 pe-3 focus:ring-2 ring-primary-500 focus:ring-2 focus:ring-primary-500 rounded-lg"
+                                                class="fi-input block w-full border-none bg-transparent py-1.5 text-base text-zinc-950 outline-none transition duration-75 placeholder:text-zinc-400 disabled:text-zinc-500 disabled:[-webkit-text-fill-color:theme(colors.zinc.500)] disabled:placeholder:[-webkit-text-fill-color:theme(colors.zinc.400)] dark:text-white dark:placeholder:text-zinc-500 dark:disabled:text-zinc-400 dark:disabled:[-webkit-text-fill-color:theme(colors.zinc.400)] dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.zinc.500)] sm:text-sm sm:leading-6 ps-3 pe-3 focus:ring-2 ring-primary-500 focus:ring-2 focus:ring-primary-500 rounded-lg"
                                                 v-model="form.payload[form.name]"
                                                 :placeholder="form.placeholder?.{{app()->getLocale()}}"
                                             />
@@ -129,35 +128,35 @@
                                         <input
                                             v-model="form.payload[form.name]"
                                             type="checkbox"
-                                            class="dark:bg-gray-700 dark:border-gray-600 rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 disabled:opacity-50"
+                                            class="dark:bg-zinc-700 dark:border-zinc-600 rounded border-zinc-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 disabled:opacity-50"
                                             value="value"
                                             :checked="form.default == 1"
                                         >
-                                        <span class="ml-2 rtl:mr-2 rtl:ml-0 dark:text-gray-200" v-text="form.label?.{{  app()->getLocale() }}"></span>
+                                        <span class="ml-2 rtl:mr-2 rtl:ml-0 dark:text-zinc-200" v-text="form.label?.{{  app()->getLocale() }}"></span>
                                     </label>
                                     <label class="flex items-center" v-else-if="form.type === 'radio'">
                                         <input
                                             v-model="form.payload[form.name]"
                                             type="radio"
-                                            class="dark:bg-gray-700 dark:border-gray-600 rounded-full border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 disabled:opacity-50"
+                                            class="dark:bg-zinc-700 dark:border-zinc-600 rounded-full border-zinc-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 disabled:opacity-50"
                                             value="value"
                                             :checked="form.default == 1"
                                         >
-                                        <span class="ml-2 rtl:mr-2 rtl:ml-0 dark:text-gray-200" v-text="form.label?.{{  app()->getLocale() }}"></span>
+                                        <span class="ml-2 rtl:mr-2 rtl:ml-0 dark:text-zinc-200" v-text="form.label?.{{  app()->getLocale() }}"></span>
                                     </label>
                                     <label class="flex flex-col items-start " v-else-if="form.type === 'range'">
-                                        <span class="block text-sm font-medium leading-6 text-gray-950 dark:text-white"
+                                        <span class="block text-sm font-medium leading-6 text-zinc-950 dark:text-white"
                                               v-text="form.label?.{{  app()->getLocale() }}"
                                         >
                                         </span>
                                         <input
                                             v-model="form.payload[form.name]"
                                             type="range"
-                                            class="w-full dark:bg-gray-700 dark:border-gray-600 rounded-full border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 disabled:opacity-50"
+                                            class="w-full dark:bg-zinc-700 dark:border-zinc-600 rounded-full border-zinc-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 disabled:opacity-50"
                                         >
                                     </label>
                                     <label class="flex flex-col items-start" v-else-if="form.type === 'date'">
-                                        <span class="block text-sm font-medium leading-6 text-gray-950 dark:text-white"
+                                        <span class="block text-sm font-medium leading-6 text-zinc-950 dark:text-white"
                                               v-text="form.label?.{{  app()->getLocale() }}"
                                         >
                                         </span>
@@ -169,7 +168,7 @@
                                         />
                                     </label>
                                     <label class="flex flex-col items-start" v-else-if="form.type === 'datetime'">
-                                        <span class="block text-sm font-medium leading-6 text-gray-950 dark:text-white"
+                                        <span class="block text-sm font-medium leading-6 text-zinc-950 dark:text-white"
                                               v-text="form.label?.{{  app()->getLocale() }}"
                                         >
                                         </span>
@@ -182,7 +181,7 @@
                                         />
                                     </label>
                                     <label class="flex flex-col items-start" v-else-if="form.type === 'time'">
-                                        <span class="block text-sm font-medium leading-6 text-gray-950 dark:text-white"
+                                        <span class="block text-sm font-medium leading-6 text-zinc-950 dark:text-white"
                                               v-text="form.label?.{{  app()->getLocale() }}"
                                         >
                                         </span>
@@ -194,7 +193,7 @@
                                         />
                                     </label>
                                     <label class="flex flex-col items-start" v-else-if="form.type === 'textarea'">
-                                        <span class="block text-sm font-medium leading-6 text-gray-950 dark:text-white"
+                                        <span class="block text-sm font-medium leading-6 text-zinc-950 dark:text-white"
                                               v-text="form.label?.{{  app()->getLocale() }}"
                                         >
                                         </span>
@@ -205,7 +204,7 @@
                                         />
                                     </label>
                                     <label class="flex flex-col items-start" v-else-if="form.type === 'file'">
-                                        <span class="block text-sm font-medium leading-6 text-gray-950 dark:text-white"
+                                        <span class="block text-sm font-medium leading-6 text-zinc-950 dark:text-white"
                                               v-text="form.label?.{{  app()->getLocale() }}"
                                         >
                                         </span>
@@ -218,7 +217,7 @@
                                         />
                                     </label>
                                     <label class="flex flex-col items-start" v-else-if="form.type === 'color'">
-                                        <span class="block text-sm font-medium leading-6 text-gray-950 dark:text-white"
+                                        <span class="block text-sm font-medium leading-6 text-zinc-950 dark:text-white"
                                               v-text="form.label?.{{  app()->getLocale() }}"
                                         >
                                         </span>
@@ -229,7 +228,7 @@
                                         />
                                     </label>
                                     <label class="flex flex-col items-start" v-else-if="form.type === 'rich'">
-                                        <span class="block text-sm font-medium leading-6 text-gray-950 dark:text-white"
+                                        <span class="block text-sm font-medium leading-6 text-zinc-950 dark:text-white"
                                               v-text="form.label?.{{  app()->getLocale() }}"
                                         >
                                         </span>
@@ -240,7 +239,7 @@
                                         />
                                     </label>
                                     <label class="flex flex-col items-start" v-else-if="form.type === 'select'">
-                                        <span class="block text-sm font-medium leading-6 text-gray-950 dark:text-white"
+                                        <span class="block text-sm font-medium leading-6 text-zinc-950 dark:text-white"
                                               v-text="form.label?.{{  app()->getLocale() }}"
                                         >
                                         </span>
@@ -309,7 +308,7 @@
                                         </div>
                                         <x-splade-checkbox class="w-full" name="has_validation" :label="__('Has Validation')" :placeholder="__('Has Validation')" />
                                         <div v-if="form.has_validation">
-                                            <div class="border p-4 rounded-lg grid grid-cols-2 lg:grid-cols-4 gap-4 my-4">
+                                            <div class="border dark:border-zinc-700 p-4 rounded-lg grid grid-cols-2 lg:grid-cols-4 gap-4 my-4">
                                                 <x-splade-radio class="w-full" name="validation[type]" value="email"  :label="__('Is Email?')" :placeholder="__('Is Email?')" />
                                                 <x-splade-radio class="w-full" name="validation[type]" value="array"  :label="__('Is Array?')" :placeholder="__('Is Array?')" />
                                                 <x-splade-radio class="w-full" name="validation[type]" value="int"  :label="__('Is Number?')" :placeholder="__('Is Number?')" />
@@ -358,8 +357,7 @@
                                 </div>
 
                             </div>
-                            <hr>
-                            <div class="flex justify-start gap-2 text-center p-2">
+                            <div class="flex justify-start gap-2 text-center p-2 border-t dark:border-zinc-700 border-zinc-200">
                                 <x-tomato-admin-submit :label="__('Update')" :spinner="true" />
                             </div>
                         </x-splade-form>
@@ -367,7 +365,7 @@
                 </x-splade-data>
             </x-tomato-admin-draggable>
         @else
-            <div class="cursor-move flex flex-col gap-4 items-center text-center justifiy-center w-full border rounded-lg p-4">
+            <div class="cursor-move flex flex-col gap-4 items-center text-center justifiy-center w-full border dark:border-zinc-700 rounded-lg p-4">
                 <x-heroicon-s-arrows-pointing-in class="w-12 h-12" />
                 {{__('Click On Any Input Type To Add It Here')}}
             </div>
