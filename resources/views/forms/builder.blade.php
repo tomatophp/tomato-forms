@@ -16,56 +16,68 @@
     <x-splade-form method="POST" action="{{route('admin.forms.options', $model->id)}}" class="text-zinc-900 dark:text-zinc-100">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 mb-4">
             <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'text'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
-                <x-tomato-icon icon="text" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
+                <i class="bx bx-text bx-md"></i>
                 <h3 class="text-sm text-center">{{__('Text')}}</h3>
             </x-splade-link>
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'textarea'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
+                <i class='bx bxs-area bx-md' ></i>
+                <h3 class="text-sm text-center">{{__('Textarea')}}</h3>
+            </x-splade-link>
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'markdown'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
+                <i class='bx bxs-file-md bx-md' ></i>
+                <h3 class="text-sm text-center">{{__('Markdown')}}</h3>
+            </x-splade-link>
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'code'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
+                <i class='bx bx-code-block bx-md' ></i>
+                <h3 class="text-sm text-center">{{__('Code')}}</h3>
+            </x-splade-link>
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'rich'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
+                <i class='bx bxs-edit bx-md' ></i>
+                <h3 class="text-sm text-center">{{__('Rich Text')}}</h3>
+            </x-splade-link>
             <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'number'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg  p-4">
-                <x-tomato-icon icon="number" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
+                <i class="bx bx-dice-6 bx-md"></i>
                 <h3 class="text-sm text-center">{{__('Number')}}</h3>
             </x-splade-link>
             <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'date'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg  p-4">
-                <x-tomato-icon icon="date" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
+                <i class='bx bxs-calendar bx-md'></i>
                 <h3 class="text-sm text-center">{{__('Date')}}</h3>
             </x-splade-link>
             <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'time'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg  p-4">
-                <x-tomato-icon icon="time" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
+                <i class='bx bxs-time bx-md'></i>
                 <h3 class="text-sm text-center">{{__('Time')}}</h3>
             </x-splade-link>
             <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'checkbox'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg  p-4">
-                <x-tomato-icon icon="checkbox" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
+                <i class='bx bxs-check-square bx-md'></i>
                 <h3 class="text-sm text-center">{{__('Checkbox')}}</h3>
             </x-splade-link>
             <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'radio'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg  p-4">
-                <x-tomato-icon icon="radio" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
+                <i class='bx bxs-check-circle bx-md'></i>
                 <h3 class="text-sm text-center">{{__('Radio')}}</h3>
             </x-splade-link>
             <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'range'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg  p-4">
-                <x-tomato-icon icon="range" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
+                <i class='bx bx-transfer-alt bx-md' ></i>
                 <h3 class="text-sm text-center">{{__('Range')}}</h3>
             </x-splade-link>
             <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'datetime'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg  p-4">
-                <x-tomato-icon icon="datetime" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
+                <i class='bx bxs-calendar-week bx-md' ></i>
                 <h3 class="text-sm text-center">{{__('Date Time')}}</h3>
             </x-splade-link>
-            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'rich'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
-                <x-tomato-icon icon="rich" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
-                <h3 class="text-sm text-center">{{__('Rich Text')}}</h3>
-            </x-splade-link>
             <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'select'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
-                <x-tomato-icon icon="select" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
+                <i class='bx bxs-select-multiple bx-md' ></i>
                 <h3 class="text-sm text-center">{{__('Select')}}</h3>
             </x-splade-link>
             <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'color'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
-                <x-tomato-icon icon="color" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
+                <i class='bx bxs-palette bx-md' ></i>
                 <h3 class="text-sm text-center">{{__('Color')}}</h3>
             </x-splade-link>
-            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'textarea'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
-                <x-tomato-icon icon="textarea" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
-                <h3 class="text-sm text-center">{{__('Textarea')}}</h3>
-            </x-splade-link>
             <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'file'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
-                <x-tomato-icon icon="file" class="fill-zinc-900 dark:fill-zinc-100 w-8 h-8" />
+                <i class='bx bxs-file bx-md' ></i>
                 <h3 class="text-sm text-center">{{__('File')}}</h3>
+            </x-splade-link>
+            <x-splade-link method="POST" href="{{route('admin.forms.options', $model->id)}}" data="{type: 'icon'}" class="cursor-pointer flex flex-col jusitify-center items-center gap-2 w-full border dark:border-zinc-700 rounded-lg p-4">
+                <i class='bx bxs-image bx-md' ></i>
+                <h3 class="text-sm text-center">{{__('Icon')}}</h3>
             </x-splade-link>
         </div>
         @if(count($options))
@@ -91,7 +103,22 @@
                             <div class="p-4 flex justifiy-between gap-2 border-b dark:border-zinc-700 border-zinc-200">
                                 <div class="flex justifiy-start gap-2 w-full mt-2">
                                     <div>
-                                        <x-tomato-icon icon="`${drag.item.type}`" class="w-5 h-5" />
+                                        <i class="bx bx-text bx-sm" v-if="drag.item.type === 'text'"></i>
+                                        <i class='bx bxs-image bx-sm' v-if="drag.item.type === 'icon'"></i>
+                                        <i class='bx bxs-file bx-sm' v-if="drag.item.type === 'file'"></i>
+                                        <i class='bx bxs-palette bx-sm' v-if="drag.item.type === 'color'" ></i>
+                                        <i class='bx bxs-select-multiple bx-sm' v-if="drag.item.type === 'select'"></i>
+                                        <i class='bx bxs-calendar-week bx-sm' v-if="drag.item.type === 'datetime'"></i>
+                                        <i class='bx bx-transfer-alt bx-sm' v-if="drag.item.type === 'range'"></i>
+                                        <i class='bx bxs-check-circle bx-sm' v-if="drag.item.type === 'radio'"></i>
+                                        <i class='bx bxs-check-square bx-sm' v-if="drag.item.type === 'checkbox'"></i>
+                                        <i class='bx bxs-time bx-sm' v-if="drag.item.type === 'time'"></i>
+                                        <i class='bx bxs-calendar bx-sm' v-if="drag.item.type === 'date'"></i>
+                                        <i class="bx bx-dice-6 bx-sm" v-if="drag.item.type === 'number'"></i>
+                                        <i class='bx bxs-edit bx-sm' v-if="drag.item.type === 'rich'"></i>
+                                        <i class='bx bx-code-block bx-sm' v-if="drag.item.type === 'code'"></i>
+                                        <i class='bx bxs-file-md bx-sm' v-if="drag.item.type === 'markdown'"></i>
+                                        <i class='bx bxs-area bx-sm' v-if="drag.item.type === 'textarea'"></i>
                                     </div>
                                     <h1 class="font-bold">@{{ drag.item.type.toUpperCase() }}</h1>
                                 </div>
@@ -222,6 +249,38 @@
                                         >
                                         </span>
                                         <x-tomato-admin-color
+                                            class="w-full"
+                                            v-bind:placeholder="form.placeholder?.{{  app()->getLocale() }}"
+                                            v-model="form.payload[form.name]"
+                                        />
+                                    </label>
+                                    <label class="flex flex-col items-start" v-else-if="form.type === 'icon'">
+                                        <span class="block text-sm font-medium leading-6 text-zinc-950 dark:text-white"
+                                              v-text="form.label?.{{  app()->getLocale() }}"
+                                        >
+                                        </span>
+                                        <x-tomato-admin-icon
+                                            class="w-full"
+                                            v-bind:placeholder="form.placeholder?.{{  app()->getLocale() }}"
+                                            v-model="form.payload[form.name]"
+                                        />
+                                    </label>
+                                    <label class="flex flex-col items-start" v-else-if="form.type === 'markdown'">
+                                        <span class="block text-sm font-medium leading-6 text-zinc-950 dark:text-white"
+                                              v-text="form.label?.{{  app()->getLocale() }}"
+                                        >
+                                        </span>
+                                        <x-tomato-markdown-editor
+                                            class="w-full"
+                                            v-model="form.payload[form.name]"
+                                        />
+                                    </label>
+                                    <label class="flex flex-col items-start" v-else-if="form.type === 'code'">
+                                        <span class="block text-sm font-medium leading-6 text-zinc-950 dark:text-white"
+                                              v-text="form.label?.{{  app()->getLocale() }}"
+                                        >
+                                        </span>
+                                        <x-tomato-admin-code
                                             class="w-full"
                                             v-bind:placeholder="form.placeholder?.{{  app()->getLocale() }}"
                                             v-model="form.payload[form.name]"

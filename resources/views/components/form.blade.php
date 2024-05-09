@@ -35,6 +35,12 @@
                        <x-splade-input  name="{{$field->name.'_confirmation'}}" :type="$field->type"   placeholder="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name)) . ' Confirmation'}}" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name)) . ' Confirmation'}}" required="{{$field->is_required}}"/>
                    @elseif($field->type === 'textarea')
                        <x-splade-textarea  :name="$field->name" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}" required="{{$field->is_required}}"/>
+                   @elseif($field->type === 'markdown')
+                       <x-tomato-markdown-editor  :name="$field->name" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}" required="{{$field->is_required}}"/>
+                   @elseif($field->type === 'code')
+                       <x-tomato-admin-code  :name="$field->name" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}" required="{{$field->is_required}}"/>
+                   @elseif($field->type === 'icon')
+                       <x-tomato-admin-icon  :name="$field->name" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}" required="{{$field->is_required}}"/>
                    @elseif(
                        $field->type === 'text' ||
                        $field->type === 'range' ||
@@ -78,6 +84,12 @@
                    <x-splade-input name="{{$field->name.'_confirmation'}}" :type="$field->type"   placeholder="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name)) . ' Confirmation'}}" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name)) . ' Confirmation'}}" required="{{$field->is_required}}"/>
                @elseif($field->type === 'textarea')
                    <x-splade-textarea :name="$field->name" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}" required="{{$field->is_required}}"/>
+               @elseif($field->type === 'markdown')
+                   <x-tomato-markdown-editor  :name="$field->name" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}" required="{{$field->is_required}}"/>
+               @elseif($field->type === 'code')
+                   <x-tomato-admin-code  :name="$field->name" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}" required="{{$field->is_required}}"/>
+               @elseif($field->type === 'icon')
+                   <x-tomato-admin-icon  :name="$field->name" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}" required="{{$field->is_required}}"/>
                @elseif($field->type === 'rich')
                    <x-tomato-admin-rich :name="$field->name" :placeholder="$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label && !empty($field->label) ? $field->label :  ucfirst(str_replace('_',' ',$field->name))}}" required="{{$field->is_required}}"/>
                @elseif(
